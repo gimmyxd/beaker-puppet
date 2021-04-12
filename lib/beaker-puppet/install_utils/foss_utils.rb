@@ -688,8 +688,8 @@ module Beaker
               #Because the msi installer doesn't add Puppet to the environment path
               #Add both potential paths for simplicity
               #NOTE - this is unnecessary if the host has been correctly identified as 'foss' during set up
-              puppetbin_path = "\"/cygdrive/c/Program Files (x86)/Puppet Labs/Puppet/bin\":\"/cygdrive/c/Program Files/Puppet Labs/Puppet/bin\""
-              on host, %Q{ echo 'export PATH=$PATH:#{puppetbin_path}' > /etc/bash.bashrc }
+              # puppetbin_path = "\"/cygdrive/c/Program Files (x86)/Puppet Labs/Puppet/bin\":\"/cygdrive/c/Program Files/Puppet Labs/Puppet/bin\""
+              # on host, %Q{ echo 'export PATH=$PATH:#{puppetbin_path}' > /etc/bash.bashrc }
             else
               webclient_proxy = opts[:package_proxy] ? "$webclient.Proxy = New-Object System.Net.WebProxy('#{opts[:package_proxy]}',$true); " : ''
               on host, powershell("$webclient = New-Object System.Net.WebClient; #{webclient_proxy}$webclient.DownloadFile('#{link}','#{msi_download_path}')")
